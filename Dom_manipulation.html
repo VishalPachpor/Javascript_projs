@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Manuplation</title>
+</head>
+<body>
+     <ul class="language">
+        <li>javascript</li>
+     </ul>
+
+</body>
+     <script> 
+         function addLanguage(langName){
+        const li = document.createElement('li');
+        li.innerHTML = `${langName}`
+        document.querySelector('.language').appendChild(li)
+    }
+    addLanguage("python")
+    addLanguage("typescript")
+
+        function addOptiLanguage(langName){
+        const li = document.createElement('li');
+        li.appendChild(document.createTextNode(langName))
+        document.querySelector('.language').appendChild(li)
+    }
+    addOptiLanguage('golang')
+
+    // Edit element
+    const secondLanguage = document.querySelector("li:nth-child(2)");
+    // secondLanguage.innerHTML = "Solidity";
+    const newLi = document.createElement("li");
+    newLi.textContent = "Ruby"
+    secondLanguage.replaceWith(newLi);
+
+    //edit with outerHTMl
+
+    const firstLang = document.querySelector("li:first-child");
+    firstLang.outerHTML = "<li> Rust </li>"
+
+
+
+</script>
+
+</html>
