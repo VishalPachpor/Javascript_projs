@@ -1,19 +1,21 @@
-const keyPress = document.getElementById("insert");
+const insert = document.getElementById("insert");
 
-window.addEventListener("keydown", function(e){
-    keyPress.innerHTML = `<div id="color"> 
-     <table>
+window.addEventListener("keydown", function(e) {
+    insert.innerHTML = `
+      <div id="color">
+      <table>
   <tr>
     <th>Key</th>
-    <th>keyCode</th>
+    <th>KeyCode</th>
     <th>Code</th>
   </tr>
   <tr>
-    <td>${e.key === " " ? "space" : e.key }</td>
-    <td>${e.keyCode} </td>
+    <td>${e.key === " " ? "space" : e.key}</td>
+    <td>${e.keyCode}</td>
     <td>${e.code}</td>
   </tr>
   
 </table>
-    </div>`
+      </div>
+    `
 })
