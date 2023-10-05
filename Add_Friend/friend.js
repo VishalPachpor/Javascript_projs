@@ -1,16 +1,18 @@
 const friendsStat = document.querySelector("h2")
-
 const add = document.getElementById("addBtn");
+let check = 0;
 
 add.addEventListener("click", function(e){
-    friendsStat.innerHTML = "Friends"
-    friendsStat.style.color = "green"
+    if(check == 0){
+        friendsStat.innerHTML = "Friends"
+        friendsStat.style.color = "green"
+        check = 1;
+    }else{
+        friendsStat.innerHTML = "Stranger"
+        friendsStat.style.color = " Red"
+        check = 0;
+    }
+   
 })
 
-const removeFrnd = document.getElementById("remBtn");
-
-removeFrnd.addEventListener("click",function(e){
-    friendsStat.innerHTML = "Unknown";
-    friendsStat.style.color = "red"
-});
 
