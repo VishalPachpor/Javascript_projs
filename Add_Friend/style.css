@@ -1,0 +1,59 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+html, body{
+    height: 100%;
+    width: 100%;
+}
+body{
+    background-color:aqua;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+#card{
+    height: 500px;
+    width: 400px;
+    background-color: aliceblue;
+    border-radius: 20px;
+    padding: 30px;
+}
+
+#card img{
+    height: 200px;
+    width: 300px;
+    padding: 10px 0;
+    border-radius: 20px;
+    position: relative;
+    object-fit: cover;
+    object-position: center;
+}
+
+#card h1, h2{
+    padding: 10px;
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+#card button{
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    margin: 10px;
+    border: none;
+    cursor: pointer;
+}
+#addBtn{
+    background: rgb(126, 195, 126);
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+#remBtn{
+    background: gray;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
