@@ -35,10 +35,48 @@ promiseThree.then(function(user){
 
 const promiseFour = new Promise(function(resolve, reject) {
     setTimeout(function(){
-
+        let error = false;
+        if(!error){
+            resolve({username:"Vishal", password:"Password123"});
+        }else{
+            reject("Something went wrong");
+        }
     },1000)
 })
 
-promiseFour.then(function(){
-
+promiseFour
+.then(function(user){
+    console.log(user);
+    return user.password;
 })
+.then(function(password){
+    console.log(password)
+})
+.catch(function(error){
+    console.log(`Error: ${error}`)
+})
+.finally(function(){
+    console.log("The promise is either resolved or got error");
+})
+
+// Promise with async await
+const promiseFive = new Promise(function(resolve, reject){
+    setTimeout(function(){
+        let error = false;
+        if(!error){
+            resolve({language:"Javascript", tutor:"Hitesh Choudhary"})
+        }else{
+            reject("An error occoured in javascript")
+        }
+    }, 1000)
+})
+
+async function consumePromiseFive() {
+    try {
+        const response = await promiseFive;
+        console.log(response)
+    } catch (error) {
+        console.log(error);
+    }
+}
+consumePromiseFive();
