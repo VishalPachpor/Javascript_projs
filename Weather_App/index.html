@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,38 +8,93 @@
     <title>Weather App </title>
 
 </head>
+
 <body>
     <div class="card">
         <div class="search">
             <input type="text" placeholder="Enter the City Name" spellcheck="false">
             <button><img src="./images/search.png" alt=""></button>
+            
+        </div>
+        <div class="error">
+            <p>Enter a valid city name</p>
         </div>
 
         <div class="weather">
             <img src="./images/clear.png" alt="weather-icon">
             <h1>34°C</h1>
             <h2>Akola</h2>
+
+            <div class="details">
+                <div class="column">
+                    <img src="./images/humidity.png" alt="wind">
+                    <div>
+                        <p class="Humidity">50%</p>
+                        <p>Humidity </p>
+                    </div>
+                </div>
+            
+                <div class="column">
+                    <img src="./images/wind.png" alt="wind">
+                    <div>
+                        <p class="wind">15 km/hr</p>
+                        <p>Wind Speed </p>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="details">
-            <div class="column">
-                <img src="./images/humidity.png" alt="wind">
-                <div >
-                    <p class="Humidity">50%</p>
-                    <p>Humidity </p>
-                </div>
-            </div>
-            
-            <div class="column">
-                <img src="./images/wind.png" alt="wind">
-                <div >
-                    <p class="wind">15 km/hr</p>
-                    <p>Wind Speed </p>
-                </div>
-            </div>
-        </div>
+       
     </div>
 
-   
+    <script>
+        const ApiKey = "eef7764832fd3fe41bd03578f0b43bd2"
+        const apiUrl = `https://api.openweathermap.org/data/2.5/weather?units=metric&q=banglore`
+
+        const searchInput = document.querySelector(".search input");
+        const searchBtn = document.querySelector(".search button")
+        const weatherIcon = document.querySelector(".weather img")
+
+        async function checkWeather(){
+            const response = await fetch(apiUrl + `&appid=${ApiKey}`)
+            if(response.status === 404){
+                document.querySelector(".error").style.display = "block"
+                document.querySelector(".weather").style.display = "none"
+            }else{
+                 let data = await response.json();
+                console.log(data)
+
+                document.querySelector(".city").innerHTML = data.name;
+                document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°C";
+                document.querySelector(".Humidity").innerHTML = data.main.humidity + "%";
+                document.querySelector(".wind").innerHTML = data.wind.speed + "Km/hr"
+
+                if (data.weather[0].main === "Clouds") {
+                    weatherIcon.src = "images/clouds.png"
+                } else if (data.weather[0].main === "Clear") {
+                    weatherIcon.src = "images/clear.png"
+                } else if (data.weather[0].main === "Drizzle") {
+                    weatherIcon.src = "images/drizzle.png"
+                } else if (data.weather[0].main === "Humidity") {
+                    weatherIcon.src = "images/humidity.png"
+                } else if (data.weather[0].main === "Mist") {
+                    weatherIcon.src = "images/mist.png"
+                } else if (data.weather[0].main === "Rain") {
+                    weatherIcon.src = "images/rain.png"
+                }
+
+                document.querySelector(".weather").style.display = "block"
+                document.querySelector(".error").style.display = "none"
+            }
+
+        }
+
+        searchBtn.addEventListener("click", function(){
+            checkWeather(searchInput.value);
+        })
+
+        
+    </script>
 </body>
+
 </html>
